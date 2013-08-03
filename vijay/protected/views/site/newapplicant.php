@@ -2,13 +2,18 @@
 <h2 class="login">
 	<?php echo CHtml::link(CHtml::image(Yii::app()->request->baseUrl."/images/celestixxxxc.png",CHtml::encode(Yii::app()->name).' v.'.Yii::app()->params['appVersion']), Yii::app()->createUrl('site/index')); ?>
 </h2>
-<h3><?php echo Yii::t('site','ForgottenPassword'); ?></h3>
+<h3><?php echo Yii::t('site','NewApplicantRegistration'); ?></h3>
 <p>
-	<?php echo Yii::t('site','restorePassword'); ?>
+	<?php //echo Yii::t('site','restorePassword'); ?>
 </p>
 <?php if(Yii::app()->user->hasFlash('PasswordSuccessChanged')):?>
-    <div class="info notification_success" id="CommentMessage">
+    <div class="info notification_success" class="CommentMessage">
         <?php echo Yii::app()->user->getFlash('PasswordSuccessChanged'); ?>
+    </div><br />
+<?php endif; ?>
+<?php if(Yii::app()->user->hasFlash('PasswordFailureChanged')):?>
+    <div class="info notification_failure" class="CommentMessage">
+        <?php echo Yii::app()->user->getFlash('PasswordFailureChanged'); ?>
     </div><br />
 <?php endif; ?>
 <?php

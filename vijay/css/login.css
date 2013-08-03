@@ -136,6 +136,14 @@ div.form .errorMessage{
 	color: red;
 	font-size:11px;
 }
+.notification_failure {
+	background: #FFFFDF url(images/accept.png) center no-repeat;
+	background-position: 15px 50%; /* x-pos y-pos */
+	text-align: left;
+	padding: 15px 20px 15px 65px;
+	border-top: 2px solid #CEEF59;
+	border-bottom: 2px solid #CEEF59;
+}
 span.required{
 	color: #C00;
 }

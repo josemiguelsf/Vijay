@@ -449,9 +449,21 @@ class SiteController extends Controller
 		{
 			$modelform->attributes=$_POST['ForgottenPasswordForm'];
 			$model=new Users;
+			//$criteria = new CDbCriteria();
+			//$criteria->user_email=$_POST['ForgottenPasswordForm']['user_email'];
+			//echo "miguelsdfdfdin";
+			//$testquery = Users::model()->find(array('condition'=>'user_email'='jose'));
+			//$post=Users::model()->findAll('condition'=>'user_email'='superservdo@gmail.com');
+			$uniqueemail=$model->find('user_email=:user_email', array('user_email'=>$_POST['ForgottenPasswordForm']['user_email']));
+			//echo "this is the email in db".$uniqueemail->user_email."that was it";
+			//echo $uniqueemail->user_phone;
+			//echo "miguelin";
+			
 			// validate model
-			if($modelform->validate())
+			if($uniqueemail->user_email==null)
 			{
+				//echo "the email is null";
+			
 				// criteria object used to find all user data information
 				 /*$userCriteria = new CDbCriteria;
 				$userCriteria->condition = "user_email = :user_email";
@@ -464,8 +476,8 @@ class SiteController extends Controller
 				$transaction = Yii::app()->db->beginTransaction();
 				if ($CountUser > 0)
 				{*/
-				echo "miguelito";
-				echo $_POST['ForgottenPasswordForm']['user_email'];
+				//echo "miguelito";
+				//echo $_POST['ForgottenPasswordForm']['user_email'];
 				//die();
 				$model->user_email = $_POST['ForgottenPasswordForm']['user_email'];
 					
@@ -489,9 +501,9 @@ class SiteController extends Controller
 						}
 					}
 					$model->user_password = md5($password);
-					echo md5($password);
-					$model->user_phone = "8888888";
-					echo $model->user_phone;
+					//echo md5($password);
+					//$model->user_phone = "8888888";
+					//echo $model->user_phone;
 					//$succ=$model->save(false);
 					if($model->save(false))
 					{
@@ -504,20 +516,20 @@ class SiteController extends Controller
 						),true);
 	
 						$subject = Yii::t('email','NewApplicant');
-	echo "fernandez";
+	//echo "fernandez";
 						
 						Yii::import('application.extensions.phpMailer.yiiPhpMailer');
 						$mailer = new yiiPhpMailer;
 						$mailer->Ready($subject, $str, array('name'=>$model->CompleteName,'email'=>$model->user_email), Emails::PRIORITY_NORMAL);
-	
-						Yii::app()->user->setFlash('PasswordSuccessChanged', Yii::t('site','PasswordSuccessChanged'));
+						//Yii::app()->user->setFlash('PasswordSuccessChanged', Yii::t('site','PasswordSuccessChanged'));
+						Yii::app()->user->setFlash('PasswordSuccessChanged', Yii::t('site','NewApplicantSuccess'));
 						$this->refresh();
 					}
 					 else
 						throw new CException('Error #000001');
 				}
 				else
-					throw new CException(Yii::t('site','EmailNotExist'));
+					Yii::app()->user->setFlash('PasswordFailureChanged', Yii::t('site','EmailAlreadyExists'));
 			}
 		
 		$this->layout = 'login';
