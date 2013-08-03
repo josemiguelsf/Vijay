@@ -54,7 +54,8 @@ class yiiPhpMailer extends PHPMailer
 		$mailer->FromName = Yii::app()->params['mailSenderName'];
 		$mailer->CharSet = 'UTF-8';
 		$mailer->AltBody = 'To view the message, please use an HTML compatible email viewer!';
-		
+		$mailer->SMTPDebug = 1;
+		$mailer->SMTPSecure = "ssl";
 		if (isset($address['email']) && isset($address['name']))
 			$mailer->AddAddress($address['email'], $address['name']);
 		else 

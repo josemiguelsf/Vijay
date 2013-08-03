@@ -113,8 +113,7 @@ $main = array(
 				'index'=>array('site/index'),
 				'contact'=>array('site/contact'),
 				'login'=>array('site/login'),
-				'register'=>array('site/register'),
-					
+						
 			)
         ),
 		'authManager'=>array(
@@ -140,14 +139,14 @@ $main = array(
 		'appVersion'=>'0.4.0',
 		'lastAppVersion'=>'0.3.5',
 		// Email configuration
-		'adminEmail'=>'admin@emailaddrss.com',
+		'adminEmail'=>'josemiguelsf@gmail.com',
 		'multiplesAccounts'=>false,
 		'mailSenderEmail'=>'noreply@emailaddrss.com',
-		'mailSenderName'=>'Celestic',
-		'mailHost'=>'smtp.emailaddrss.com',
+		'mailSenderName'=>'HRVijay',
+		'mailHost'=>'smtp.gmail.com:465',
 		'mailSMTPAuth'=>true,
-		'mailUsername'=>'user',
-		'mailPassword'=>'password',
+		'mailUsername'=>'josemiguelsf@gmail.com',
+		'mailPassword'=>'jm541999',
 		'mailSendMultiples'=>5,
 		// Internationalization
 		'timezone' => 'America/Mexico_City',

@@ -26,9 +26,10 @@ $form=$this->beginWidget('CActiveForm', array(
 		<?php //if(Yii::app()->params['multiplesAccounts']): ?>
 				
 		<div class="field last" style="text-align:right;">
-			<?php echo CHtml::link(Yii::t('site','newApplicant'), Yii::app()->createUrl('site/register')); ?>
+			<?php //echo CHtml::link(Yii::t('site','newApplicant'), Yii::app()->createUrl('site/contact')); ?>
 		<?php echo CHtml::linkButton(Yii::t('site','newApplicant'),array('class'=>'button big primary',
-                          'submit'=>Yii::app()->createUrl('site/register'))) ?>
+                          'submit'=>Yii::app()->createUrl('site/newapplicant'))) ?>
+		<?php //echo CHtml::link(Yii::t('site','newApplicant'), Yii::app()->createUrl('site/register')); ?>
 		</div>
 		<?php // endif; ?>
 	</div>

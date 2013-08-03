@@ -297,25 +297,30 @@ class SiteController extends Controller
 	 */
 	public function actionRegister()
 	{
+		echo "josesito";
+		
 		// TRUE if multiples accounts can be created
-		if (!Yii::app()->params['multiplesAccounts'])
+	/*	if (!Yii::app()->params['multiplesAccounts'])
 		{
 			if (AppTools::masterAdmin())
 			{
 				Yii::app()->user->loginRequired();
 				Yii::app()->end();
 			}
-		}
+		}*/
 		
 		$register = new RegisterForm();
 		// RegisterForm was sent via POST
 		if(isset($_POST['RegisterForm']))
-		{
+		{echo "mail is valid jjjjjj";
+				die();
 			// Get attributes from POST to RegisterForm object model
 			$register->attributes = $_POST['RegisterForm'];
 			// validate if register has all fields required
 			if($register->validate())
 			{
+				echo "mail is valid jjjjjj";
+				die();
 				// create new user and account, then redirect to signsucess
 				if ($register->create())
 				{
@@ -434,7 +439,91 @@ class SiteController extends Controller
 		$this->layout = 'login';
 		$this->render('recover',array('model'=>$model));
 	}
+	public function actionNewapplicant()
+	{
+		// create ForgottenPasswordForm object
+		$modelform = new ForgottenPasswordForm;
 	
+		// verify if ForgottenPasswordForm was used
+		if(isset($_POST['ForgottenPasswordForm']))
+		{
+			$modelform->attributes=$_POST['ForgottenPasswordForm'];
+			$model=new Users;
+			// validate model
+			if($modelform->validate())
+			{
+				// criteria object used to find all user data information
+				 /*$userCriteria = new CDbCriteria;
+				$userCriteria->condition = "user_email = :user_email";
+				$userCriteria->params = array(
+						':user_email' => $model->user_email,
+				);
+	
+				$CountUser = Users::model()->count($userCriteria);
+	
+				$transaction = Yii::app()->db->beginTransaction();
+				if ($CountUser > 0)
+				{*/
+				echo "miguelito";
+				echo $_POST['ForgottenPasswordForm']['user_email'];
+				//die();
+				$model->user_email = $_POST['ForgottenPasswordForm']['user_email'];
+					
+					//echo $user->
+					//
+					//die();
+					//$user = Users::model()->find($userCriteria);
+						
+					// -- Password Generator
+					$vowels = 'aeiou';
+					$consonants = 'bcdfghjklmnpqrstvwxyz';
+					$password = '';
+					$alt = time() % 2;
+					for ($i=0; $i<10; $i++) {
+						if ($alt == 1) {
+							$password .= $consonants[(rand() % strlen($consonants))];
+							$alt = 0;
+						} else {
+							$password .= $vowels[(rand() % strlen($vowels))];
+							$alt = 1;
+						}
+					}
+					$model->user_password = md5($password);
+					echo md5($password);
+					$model->user_phone = "8888888";
+					echo $model->user_phone;
+					//$succ=$model->save(false);
+					if($model->save(false))
+					{
+						$str = $this->renderPartial('//templates/users/PasswordChanged',array(
+								//'userRequest' => $model->CompleteName,
+								'user_email' => $model->user_email,
+								'user_password' => $password,
+							//	'applicationName' => Yii::app()->name,
+							//	'applicationUrl' => "http://".$_SERVER['SERVER_NAME'].Yii::app()->request->baseUrl,
+						),true);
+	
+						$subject = Yii::t('email','NewApplicant');
+	echo "fernandez";
+						
+						Yii::import('application.extensions.phpMailer.yiiPhpMailer');
+						$mailer = new yiiPhpMailer;
+						$mailer->Ready($subject, $str, array('name'=>$model->CompleteName,'email'=>$model->user_email), Emails::PRIORITY_NORMAL);
+	
+						Yii::app()->user->setFlash('PasswordSuccessChanged', Yii::t('site','PasswordSuccessChanged'));
+						$this->refresh();
+					}
+					 else
+						throw new CException('Error #000001');
+				}
+				else
+					throw new CException(Yii::t('site','EmailNotExist'));
+			}
+		
+		$this->layout = 'login';
+		$this->render('newapplicant',array('model'=>$modelform));
+	}
+
 	// hel view
 	public function actionHelp()
 	{
