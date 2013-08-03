@@ -23,11 +23,14 @@ $form=$this->beginWidget('CActiveForm', array(
 	</div>
 	<div class="buttons">
 		<?php echo CHtml::button(Yii::t('site','send'), array('type'=>'submit', 'class'=>'button big primary','tabindex'=>4)); ?>
-		<?php if(Yii::app()->params['multiplesAccounts']): ?>
+		<?php //if(Yii::app()->params['multiplesAccounts']): ?>
+				
 		<div class="field last" style="text-align:right;">
-			<?php echo CHtml::link(Yii::t('site','alreadyToRegister'), Yii::app()->createUrl('site/register')); ?>
+			<?php echo CHtml::link(Yii::t('site','newApplicant'), Yii::app()->createUrl('site/register')); ?>
+		<?php echo CHtml::linkButton(Yii::t('site','newApplicant'),array('class'=>'button big primary',
+                          'submit'=>Yii::app()->createUrl('site/register'))) ?>
 		</div>
-		<?php endif; ?>
+		<?php // endif; ?>
 	</div>
 <?php $this->endWidget(); ?>
 <p style="border-top:1px solid #ccc; margin-top:5px;">

@@ -16,6 +16,7 @@ return array(
 	'LoginHere' => 'Login Here',
 	'ContactUs' => 'Contact Us',
 	'alreadyToRegister' => 'Register free account',
+	'newApplicant' => 'New Applicant?',
 	'CelesticExplanation' => '(JMS THIS MESSAGE IS COMING FROM MESSSAGES FOLDER AND AN ECHO FROM LOGIN.PHP WITH THE NAME OF THE MESSAGE CALLED CELESTICEXPLANATION) is a collaborative tool, developed to control software projects, allowing track and have a record of progress throughout the development process.',
 	'signingup' => 'Thanks for your signing up, we have sent an email to verify you\'re not a robot, please check, activate your account and get started.',
 	'verifysuccess' => 'Account activated',

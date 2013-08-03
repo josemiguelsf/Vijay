@@ -74,12 +74,12 @@ $main = array(
 	'components' => array(
 		'db' =>  array(
 			'class' => 'CDbConnection',
-            'connectionString' => 'mysql:host=localhost;dbname=vj',
+            'connectionString' => 'mysql:host=fdb6.awardspace.net;dbname=1474299_vj',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => '1474299_vj',
+			'password' => 'jm5419',
             'charset' => 'UTF8',
-            'tablePrefix' => '',
+            'tablePrefix' => '1474299_vj',
             'emulatePrepare' => true,
             'enableProfiling' => true,
             'schemaCacheID' => 'cache',
@@ -110,10 +110,12 @@ $main = array(
 			'showScriptName'=>false,
 			'caseSensitive'=>false,
 			'rules'=>array(
-				'index'=>array('site/index'),
-				'contact'=>array('site/contact'),
-				'login'=>array('site/login'),
-				'register'=>array('site/register'),
+				//'index'=>array('site/index'),
+					'index'=>array('Budgets/test'),
+					
+					'contact'=>array('site/contact'),
+				//'login'=>array('site/login'),
+					'login'=>array('Budgets/test'),
 					
 			)
         ),
