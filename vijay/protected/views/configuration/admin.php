@@ -37,9 +37,9 @@ $this->breadcrumbs=array(
 					</a>
 				</li>
 				<li>                      
-					<a class="icon-menuxx cornersxx" href="<?php // echo Yii::app()->createUrl('configuration/usersPermissions'); ?>">
-						<?php //echo CHtml::image(Yii::app()->request->baseUrl."/images/icons/permissions.png"); ?>
-						<span><?php //echo Yii::t('configuration', 'Permissions'); ?></span>
+					<a class="icon-menu corners" href="<?php  echo Yii::app()->createUrl('configuration/usersPermissions'); ?>">
+						<?php echo CHtml::image(Yii::app()->request->baseUrl."/images/icons/permissions.png"); ?>
+						<span><?php echo Yii::t('configuration', 'Permissions'); ?></span>
 					</a>
 				</li>
 				

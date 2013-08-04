@@ -207,9 +207,11 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
+		
 		// redirec to dashboard page is user is registered
 		if (!Yii::app()->user->isGuest)
 		{
+			
 			$this->render('dashboard');
 		}
 		else
@@ -220,6 +222,7 @@ class SiteController extends Controller
 			// if it is ajax validation request
 			if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
 			{
+				
 				echo CActiveForm::validate($model);
 				Yii::app()->end();
 			}
@@ -229,8 +232,14 @@ class SiteController extends Controller
 			{
 				$model->attributes=$_POST['LoginForm'];
 				// validate user input and redirect to the previous page if valid
+				//echo "login no guest login";
+				//var_dump($model);
+				//echo $model->username;
+				//echo $model->password;
+				//die();
 				if($model->validate() && $model->login())
 				{
+					//echo "it is validated";
 					$this->redirect((Yii::app()->user->getState('refer')==null) ? Yii::app()->controller->createUrl('site/logged') : Yii::app()->user->getState('refer'));
 				}
 			}
@@ -258,6 +267,7 @@ class SiteController extends Controller
 		}
 		else
 		{
+			/*
 			// verify infoproject exist
 			if ((isset($_GET['infoproject'])) && (is_numeric($_GET['infoproject'])))
 			{
@@ -272,6 +282,12 @@ class SiteController extends Controller
 			}
 			// output view dashboard
 			$this->render('dashboard');
+			*/
+			echo Yii::t('site','LoggedAs')." ".CHtml::link(CHtml::encode(Yii::app()->user->CompleteName),Yii::app()->createUrl('users/view', array('id'=>Yii::app()->user->id)));
+			render('users/view', array('id'=>Yii::app()->user->id));
+			echo "after render user view";
+		
+				
 		}
 	}
 	
@@ -500,7 +516,11 @@ class SiteController extends Controller
 							$alt = 1;
 						}
 					}
+					//$password="adminjms";
 					$model->user_password = md5($password);
+					$model->user_active = 1;
+					$model->user_admin = 0;
+					$model->account_id = 77;
 					//echo md5($password);
 					//$model->user_phone = "8888888";
 					//echo $model->user_phone;
@@ -514,7 +534,7 @@ class SiteController extends Controller
 							//	'applicationName' => Yii::app()->name,
 							//	'applicationUrl' => "http://".$_SERVER['SERVER_NAME'].Yii::app()->request->baseUrl,
 						),true);
-	
+						
 						$subject = Yii::t('email','NewApplicant');
 	//echo "fernandez";
 						
@@ -522,8 +542,14 @@ class SiteController extends Controller
 						$mailer = new yiiPhpMailer;
 						$mailer->Ready($subject, $str, array('name'=>$model->CompleteName,'email'=>$model->user_email), Emails::PRIORITY_NORMAL);
 						//Yii::app()->user->setFlash('PasswordSuccessChanged', Yii::t('site','PasswordSuccessChanged'));
+						echo $model->user_email.'<br>';
+						echo $model->user_password.'<br>';
+						echo $password.'<br>';
+						
+						die();
 						Yii::app()->user->setFlash('PasswordSuccessChanged', Yii::t('site','NewApplicantSuccess'));
 						$this->refresh();
+						
 					}
 					 else
 						throw new CException('Error #000001');
