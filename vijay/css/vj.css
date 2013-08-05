@@ -1,0 +1,126 @@
+.vjheader {
+	height: 50px;
+	background-color: #000000;
+	color: #ffffff;
+	-moz-border-radius:8px;border-radius:8px; 
+	
+	margin-top:5px;
+	
+	}
+	.vjheader .span3 p{ margin-left:43px; font-size:16px; margin-top:17px;}
+ 	.vjheader .span8 p{ text-align:center;font-size:24px; margin-top:20px; }
+ 	.vjheader .span1 p{ margin-right:15px;font-size:12px;margin-top:20px;}
+ 	.vjheader .breadhead {
+	margin-top:5px;
+	margin-left:3px;
+	}
+ 	.vjmenu {
+	height: 100px;
+	background-color: #DC6819;
+	color: #ffffff;
+	-moz-border-radius:8px;border-radius:8px; 
+	margin=top:3px;
+	}
+	.vjmenu .span9 {padding-left:5px;}
+
+.containerjm{
+width:100%;
+background-color:#5c5c5c;
+}
+
+.containerlogin {
+	width: 414px;
+	height: 330px;
+	background-color: #B7E9FF;
+}
+.containerloginxx {
+	margin: 20px auto;
+	padding: 18px 18px 0;
+	width: 514px;
+	min-height: 330px;
+	height: auto !important;
+	height: 330px;
+	background-color: #B7E9FF;
+	background: #B7E9FF url("../images/header_bg.png") repeat-x scroll 0 -5%;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+}
+
+.loginbox{
+width:150px;
+background-color:#DC6819;
+margin-botton:2px;
+}
+/*
+.clear:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+}
+.clear { display: inline-block; }
+
+.space20 { height: 20px; }
+h3 {
+	font-size: 15px;
+	color: #5c5c5c;
+	letter-spacing: -1px;
+}
+p.jerr {
+	font-size: 15px;
+	color: #5c5c5c;
+	margin: 25px 0;
+}
+.container {
+	width: 500px !important;
+	position: relative;
+}
+.errorLabel404 {
+	width: 181px;
+	height: 181px;
+	background: url(images/404_label.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	top: -5px;
+	left: -5px;
+}
+.errorLabel403 {
+	width: 181px;
+	height: 181px;
+	background: url(images/403_label.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	top: -5px;
+	left: -5px;
+}
+.contentMiddle {
+	background-color: #fff;
+	padding: 0 12px;
+}
+
+.leftContent {
+	width: 355px;
+	/*float: left;*/
+	margin: 0 auto;
+}
+.rightContent {
+	width: 355px;
+	margin: 0 auto;
+}
+.smiley {
+	width: 299px;
+	height: 350px;
+	background-image: url(../images/error.png);
+	background-repeat: no-repeat;
+}
+ul {
+	margin-left: 30px;
+}
+ul li.jerr {
+	padding: 4px 0;
+	list-style-type: none;
+}
+*/
