@@ -9,7 +9,10 @@ class Users extends CActiveRecord
 	{
 		return $this->user_name." ".$this->user_lastname;
 	}
-	
+	public function getImagepath()
+	{
+		return $this->user_imagepath;
+	}
 	/**
 	 * The followings are the available columns in table 'tb_users':
 	 * @var integer $user_id
@@ -24,6 +27,7 @@ class Users extends CActiveRecord
 	 * @var integer $address_id
 	 * @var integer $user_accountManager
 	 * @var datetime $user_lastLogin
+	 * @var datetime $user_imagepath
 	 */
 
 	/**
@@ -105,6 +109,8 @@ class Users extends CActiveRecord
 			'address_id' => Yii::t('users','address_id'),
 			'user_accountManager' => Yii::t('users','user_accountManager'),
 			'user_lastLogin' => Yii::t('users','user_lastLogin'),
+			'user_imagepath' => "Image",
+					
 		);
 	}
 

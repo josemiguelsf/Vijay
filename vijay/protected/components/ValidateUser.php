@@ -53,7 +53,11 @@ class ValidateUser extends CWebUser
 		$Users = Users::model()->findByPk(Yii::app()->user->id);
 		return $Users->CompleteName;
 	}
-	
+	public function getImagepath()
+	{
+		$Users = Users::model()->findByPk(Yii::app()->user->id);
+		return $Users->Imagepath;
+	}
 	/**
 	 * Return a value indicating whether the user is or not manager
 	 * By default user_id as unique param

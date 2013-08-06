@@ -31,18 +31,33 @@
 						?>
 						<?php echo (!Yii::app()->user->isGuest) ? CHtml::link('Logout', Yii::app()->createUrl('site/logout')) : ''; ?>
 					</p>
-					<?php 
-						$this->widget('application.extensions.VGGravatarWidget.VGGravatarWidget', 
+					
+					<a href="http://qbit.com.mx/labs/celestic/blog" title="Blog" rel="external">
+					
+							<?php 
+							
+							$imgpth=Yii::app()->user->Imagepath;
+							if ($imgpth=="") $imgpth="candidate.jpg";
+							//echo "josesito image"; 
+							//echo Yii::app()->user->Imagepath;
+							//echo Yii::app()->request->baseUrl."/images/".Yii::app()->user->Imagepath;
+							echo CHtml::image(Yii::app()->request->baseUrl."/images/".$imgpth);?>
+					
+					</a>
+					
+					
+						<?php
+							/*$this->widget('application.extensions.VGGravatarWidget.VGGravatarWidget', 
 							array(
 								'email' => CHtml::encode(Yii::app()->user->getState('user_email')),
 								'hashed' => false,
-								'default' => 'http://'.$_SERVER['SERVER_NAME'].Yii::app()->request->baseUrl.'/images/bg-avatar.png',
-								'size' => 65,
+								'default' => 'http://'.$_SERVER['SERVER_NAME'].Yii::app()->request->baseUrl.'/images/celestic.png',
+								'size' => 165,
 								'rating' => 'PG',
 								'htmlOptions' => array('class'=>'borderCaption','alt'=>'Gravatar Icon' ),
 							)
-						);
-					?>
+						); */
+				?>	
 				</div>
 				<?php } ?>
 				<?php
