@@ -42,6 +42,10 @@ $console = array(
                     'logFile'=>'cron_trace.log',
                     'levels'=>'trace',
                 ),
+            	array(
+            			'class'=>'ext.yii-debug-toolbar.YiiDebugToolbarRoute',
+            			 // if working locally this is not required 'ipFilters'=>array('127.0.0.1','192.168.1.215'),
+            	),
             ),
         ),
 	),

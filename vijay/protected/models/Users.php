@@ -5,6 +5,7 @@
  */
 class Users extends CActiveRecord
 {
+	public $image;
 	public function getCompleteName()
 	{
 		return $this->user_name." ".$this->user_lastname;
@@ -64,8 +65,14 @@ class Users extends CActiveRecord
 			array('user_password', 'length', 'min'=>6, 'on'=>array('update'), 'message'=>Yii::t('inputValidations','MinValidation')),
 			array('user_email', 'email', 'message'=>Yii::t('inputValidations','EmailValidation')),
 			array('user_email', 'unique', 'message'=>Yii::t('inputValidations','UniqueValidation')),
+			//array('image', 'file', 'types'=>'jpg, jpeg, gif, png', 'message'=>Yii::t('inputValidations','FileTypeValidation')),
+			array('image', 'file', 'types'=>'doc, docx, rtf, ppt, pptx, odt, ods, xls, xlsx, sql, wav, ogg, pdf, psd, ai, txt, bmp, jpg, jpeg, gif, png, svg, zip, rar, bz, bz2, z, tar', 'message'=>Yii::t('inputValidations','FileTypeValidation')),
+			
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
+			//array('image', 'file', 'types'=>'jpg, gif, png'),
+			//array('image', 'file', 'types'=>'jpg, gif, png','length', 'max'=>'200'),
+				
 			array('user_id, user_name, user_lastname, user_email, user_phone, user_admin, user_active, account_id, address_id, user_accountManager', 'safe', 'on'=>'search'),
 		);
 	}
@@ -109,7 +116,8 @@ class Users extends CActiveRecord
 			'address_id' => Yii::t('users','address_id'),
 			'user_accountManager' => Yii::t('users','user_accountManager'),
 			'user_lastLogin' => Yii::t('users','user_lastLogin'),
-			'user_imagepath' => "Image",
+			'user_image' => "Image",
+			'image' => "Image to be Uploaded",
 					
 		);
 	}
