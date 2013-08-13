@@ -47,6 +47,7 @@
 						?>
 					</span>
 				</div>
+				
 				<?php if ($userManager) { ?>
 				<div class="row">
 					<?php echo $form->labelEx($model,'user_active'); ?>
@@ -89,6 +90,15 @@
 					</span>
 				</div>
 				<?php } ?>
+				
+				<div class="row">
+      				  <?php echo $form->labelEx($model,'image'); ?>
+       				 <?php echo CHtml::activeFileField($model, 'image'); ?>  
+      				 <?php echo $form->error($model,'image'); ?>
+				</div>
+	<div class="row">
+				</div>
+				
 			</div>
 		</div>
 	</fieldset>

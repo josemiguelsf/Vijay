@@ -15,6 +15,9 @@ $this->pageTitle = Yii::app()->name." - ".Yii::t('users', 'TitleUsers');
 			<?php echo CHtml::link(Yii::t('users', 'ListUsers'), Yii::app()->controller->createUrl('index'),array('class'=>'button primary')); ?>
 			<?php echo CHtml::link(Yii::t('users', 'CreateUser'), Yii::app()->controller->createUrl('create'),array('class'=>'button')); ?>
 			<?php echo CHtml::link(Yii::t('users', 'ViewUser'), Yii::app()->controller->createUrl('view',array('id'=>$model->user_id)),array('class'=>'button')); ?>
+			<?php echo CHtml::link(Yii::t('users', 'ViewUser'), array('competency/create')); ?>
+			<?php echo CHtml::link('list of competencies', array('competency/index')); ?>
+	
 		</div>
 		<ul class="portlet-tab-nav">
 			<li class="portlet-tab-nav-active">

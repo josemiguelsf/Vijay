@@ -30,10 +30,10 @@ $main = array(
 	),
     
     // Begin request event
-    'onBeginRequest'=>array(
+    /*'onBeginRequest'=>array(
     	'Request','begin'
    	),
-	
+	*/
 	// Lenguaje de los mensajes
 	'sourceLanguage'=>'en_US',
 	
@@ -85,6 +85,7 @@ $main = array(
             'schemaCacheID' => 'cache',
             'schemaCachingDuration' => 3600
 		),
+			
 	),
 ),
 		'messages'=>array(
@@ -94,7 +95,7 @@ $main = array(
 			'allowAutoLogin'=>true,
 			//'loginUrl'=>array('site/login'),
 			'class' => 'ValidateUser',
-				'loginUrl'=>array('Budgets/test'),
+				'loginUrl'=>array('Site/login'),
 				
 		),
 		'lc'=>array(
@@ -105,6 +106,21 @@ $main = array(
             'enableCookieValidation' => true,
             'enableCsrfValidation' => true,
         ),
+		'modules'=>array(
+	      //  'install',
+		//'update',
+	//	'modules'=>array(
+		// uncomment the following to enable the Gii tool
+		
+		'gii'=>array(
+			'class'=>'system.gii.GiiModule',
+			'password'=>'admin',
+			// If removed, Gii defaults to localhost only. Edit carefully to taste.
+			//'ipFilters'=>array('127.0.0.1','::1'),
+		//),
+		),
+	),
+	
 		'urlManager'=>array(
 			'urlFormat'=>'get',
 			'showScriptName'=>false,
@@ -116,6 +132,8 @@ $main = array(
 						
 			)
         ),
+			
+			
 		'authManager'=>array(
 			'class'=>'CDbAuthManager',
 			'connectionID'=>'db',
@@ -128,12 +146,10 @@ $main = array(
         ),
 	),
 	
-	'modules'=>array(
-	        'install',
-		'update'
-	),
 	
-	// application parameters
+			
+			
+		// application parameters
 	'params'=>array(
 		// App parameters
 		'appVersion'=>'0.4.0',

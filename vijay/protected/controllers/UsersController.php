@@ -241,9 +241,11 @@ class UsersController extends Controller
 	 */
 	public function actionUpdate()
 	{
+		
 		if(Yii::app()->user->checkAccess('updateUsers'))
 		{
-			$allowEdit = false;
+			
+		$allowEdit = false;
 			$model=$this->loadModel();
 			$tmppw = $model->user_password;
 			if (!empty($model->address_id))
@@ -260,20 +262,30 @@ class UsersController extends Controller
 			if (($model->user_id == Yii::app()->user->id) || ($userManager) || Yii::app()->user->IsAdministrator) {
 				$allowEdit = true;
 			}
-
+			
 			if(isset($_POST['Users']) && isset($_POST['Address']))
 			{			
+				
 				$model->attributes=$_POST['Users'];
+
+				
 				$address->attributes = $_POST['Address'];
 				
 				if (isset($_POST['Users']['user_password']))
 					$model->user_password = md5($model->user_password);
-					
+				//echo "this is before validation";
 				$valid = $address->validate();
-				$valid = $model->validate() && $valid;
-				
+				//$valid = $model->validate() && $valid;
+				///echo "this is before validating posting";
+				//var_dump($valid);
+				//die();
 				if($valid)
 				{
+					//echo "this is after validating";
+				//	die();
+					//its validating the field as being blank check this out...
+					//echo "joseKccvcvcxcvcccK";
+				//	die();
 					$address->save(false);
 					$model->address_id = $address->primaryKey;
 					
@@ -288,7 +300,26 @@ class UsersController extends Controller
 							'user_id' => Yii::app()->user->id,
 							'module_id' => Yii::app()->controller->id
 						);
+						
 						Logs::model()->saveLog($attributes);
+					//	echo "this form is posted";
+						$filename="jmsimageupload.jpg";
+						//echo $model->user_email;
+						//die();
+						$model->image=CUploadedFile::getInstance($model,'image');
+						//var_dump($model->image);
+						//die();
+						//$uploadedFile=CUploadedFile::getInstance($model,'user_imagepath');
+						//var_dump($uploadedFile);
+						//die();
+						//$model->user_imagepath = $fileName;
+						//echo "this is the type".($model->image->getType());
+						//echo "this is before saving";
+						//die();
+						$model->image->saveAs('/imagenjose.jpg');
+						//$uploadedFile->saveAs('/images/'.$fileName);
+						//echo "THIS IS AFTER SAVING";
+					//	die();
 						
 						$this->redirect(array('view','id'=>$model->user_id));
 					}
