@@ -1,2 +1,0 @@
-<h3 style="margin-top:10px"><?php echo Yii::t('projects','DefineManagers'); ?></h3>
-<?php echo $this->renderPartial('_formrelated', array('model'=>$model, 'users'=>$users, 'clients'=>$clients, 'userIDs'=>$userIDs)); ?> 
