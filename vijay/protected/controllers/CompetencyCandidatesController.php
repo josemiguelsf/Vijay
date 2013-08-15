@@ -8,7 +8,7 @@
  * @property CActiveRecord $_model
  *
  **/
-class CompetencyCandidateController extends Controller
+class CompetencyCandidatesController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -141,7 +141,7 @@ class CompetencyCandidateController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Competency('search');
+		$model=new CompetencyCandidates('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['CompetencyCandidates']))
 			$model->attributes=$_GET['CompetencyCandidates'];
