@@ -12,7 +12,7 @@
  *
  * The followings are the available model relations:
  */
-class Competency extends CActiveRecord
+class CompetencyCandidates extends CActiveRecord
 {
 	
 	public static function model($className=__CLASS__)
