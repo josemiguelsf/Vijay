@@ -36,7 +36,7 @@ class CompetencyController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view','treeview', simpletree),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -130,10 +130,39 @@ class CompetencyController extends Controller
 	 */
 	public function actionIndex()
 	{
+		$dataTree=array(
+				array(
+						'text'=>'FamilyRoot', //must using 'text' key to show the text
+						'children'=>array(//using 'children' key to indicate there are children
+								array(
+										'text'=>'Father',
+										'children'=>array(
+												array('text'=>'me'),
+												array('text'=>'big sis'),
+												array('text'=>'little brother'),
+										)
+								),
+								array(
+										'text'=>'Uncle',
+										'children'=>array(
+												array('text'=>'Ben'),
+												array('text'=>'Sally'),
+										)
+								),
+								array(
+										'text'=>'Aunt',
+								)
+						)
+				)
+		);
 		$dataProvider=new CActiveDataProvider('Competency');
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
+				'dataProvider'=>$dataProvider, 'dataTree'=>$dataTree)
+		);
+		
+		
+		
+		
 	}
 
 	/**
@@ -175,5 +204,33 @@ class CompetencyController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+	public function actionTreeView() {
+		$dataTree=array(
+		      array(
+					'text'=>'Grampa', //must using 'text' key to show the text
+					'children'=>array(//using 'children' key to indicate there are children
+					      array(
+							'text'=>'Father',
+							'children'=>array(
+								array('text'=>'me'),
+								array('text'=>'big sis'),
+								array('text'=>'little brother'),
+							)
+						),
+						 array(
+						      'text'=>'Uncle',
+							  'children'=>array(
+							        array('text'=>'Ben'),
+							        array('text'=>'Sally'),
+							   )
+						),
+						array(
+						    'text'=>'Aunt',
+						)
+					)
+				)
+		);
+		$this->render('index', array('dataTree'=>$dataTree));
 	}
 }

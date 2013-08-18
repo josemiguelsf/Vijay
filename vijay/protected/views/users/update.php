@@ -17,6 +17,7 @@ $this->pageTitle = Yii::app()->name." - ".Yii::t('users', 'TitleUsers');
 			<?php echo CHtml::link(Yii::t('users', 'ViewUser'), Yii::app()->controller->createUrl('view',array('id'=>$model->user_id)),array('class'=>'button')); ?>
 			<?php echo CHtml::link(Yii::t('users', 'ViewUser'), array('competency/create')); ?>
 			<?php echo CHtml::link('list of competencies', array('competencycandidates/admin')); ?>
+			<?php echo CHtml::link('VIEW TREE', array('competency/index')); ?>
 	
 		</div>
 		<ul class="portlet-tab-nav">

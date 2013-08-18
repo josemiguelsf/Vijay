@@ -23,6 +23,8 @@ $this->pageTitle = Yii::app()->name." - ".Yii::t('users', 'TitleUsers');
 			<?php if((Yii::app()->user->IsAdministrator) || ($model->user_id == Yii::app()->user->id)):?>
 				<?php echo CHtml::link(Yii::t('users', 'Update User Profile'), Yii::app()->controller->createUrl('update',array('id'=>$model->user_id)), array('class'=>'button')); ?>
 			<?php endif;?>
+			<?php echo CHtml::link(Yii::t('users', 'Update My Competency'), Yii::app()->createUrl('competencycandidates/admin',array('id'=>$model->user_id))); ?>
+							
 		</div>
 		<div class="subcolumns">
 			<div class="c80l">
