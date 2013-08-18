@@ -12,25 +12,25 @@
 )); ?>
 
 	<div class="row">
-		<?php echo $form->label($model,'competency_candidates_id'); ?>
-		<?php echo $form->textField($model,'competency_candidates_id'); ?>
+		<?php echo $form->label($modelcan,'competency_candidates_id'); ?>
+		<?php echo $form->textField($modelcan,'competency_candidates_id'); ?>
 	</div>
 	<div class="row">
-		<?php echo $form->label($model,'user_id'); ?>
-		<?php echo $form->textField($model,'user_id'); ?>
+		<?php echo $form->label($modelcan,'user_id'); ?>
+		<?php echo $form->textField($modelcan,'user_id'); ?>
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'competency_id'); ?>
-		<?php echo $form->textField($model,'competency_id'); ?>
+		<?php echo $form->label($modelcan,'competency_id'); ?>
+		<?php echo $form->textField($modelcan,'competency_id'); ?>
 	</div>
 	<div class="row">
-		<?php echo $form->label($model,'competency_grade'); ?>
-		<?php echo $form->textField($model,'competency_grade'); ?>
+		<?php echo $form->label($modelcan,'competency_grade'); ?>
+		<?php echo $form->textField($modelcan,'competency_grade'); ?>
 	</div>
 	<div class="row">
-		<?php echo $form->label($model,'years_of_experience'); ?>
-		<?php echo $form->textField($model,'years_of_experience'); ?>
+		<?php echo $form->label($modelcan,'years_of_experience'); ?>
+		<?php echo $form->textField($modelcan,'years_of_experience'); ?>
 	</div>
 		<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
