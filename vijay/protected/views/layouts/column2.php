@@ -6,6 +6,8 @@
 	</div>
 	<div class="grid_4">
 	THIS IS COMING FROM THE COLUMN2.PHP JMS JS
+	
+	
 		<?php
 		echo "COLUM2 COLUM2 COLUM2";
 			// Milestones Access

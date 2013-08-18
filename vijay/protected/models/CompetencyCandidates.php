@@ -51,7 +51,7 @@ class CompetencyCandidates extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-				'Competency_candidate'=>array(self::HAS_MANY, 'Competency', 'competency_id')
+				'Competency_candidates'=>array(self::HAS_ONE, 'Competency', 'competency_id')
 				
 				
 		);
@@ -59,7 +59,7 @@ class CompetencyCandidates extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'competency_candidats_id' => "ID Competency of Candidate",
+			'competency_candidates_id' => "ID Competency of Candidate",
 			'user_id' => 'User ID',
 			'competency_grade' => 'Competency Grade',
 			'years_of_experience' => 'Competency Years of Experience',

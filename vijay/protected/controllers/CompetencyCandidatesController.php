@@ -70,20 +70,26 @@ class CompetencyCandidatesController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new CompetencyCandidates;
-
+		$modelcan=new CompetencyCandidates;
+		$modelcomp=new Competency;
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['CompetencyCandidates']))
+		if(isset($_POST['CompetencyCandidates'])& isset($_POST['Competency']))
 		{
-			$model->attributes=$_POST['CompetencyCandidates'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->competency_candidates_id));
+			$modelcan->attributes=$_POST['CompetencyCandidates'];
+			$modelcomp->attributes=$_POST['CompetencyComp'];
+			if($modelcan->save()&$modelcomp->save())
+				$this->redirect(array('view','id'=>$modelcan->competency_candidates_id));
 		}
-
+		echo "before modelcantotal";
+$modelcantotal=CompetencyCandidates::model()->findAll();
+$modelcomptotal=$modelcomp->findAll();
+echo "after modelcantotal";
+//print_r($modelcantotal);
+//die();
 		$this->render('create',array(
-			'model'=>$model,
+			'modelcan'=>$modelcantotal,'modelcomp'=>$modelcomptotal,
 		));
 	}
 
