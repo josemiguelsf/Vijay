@@ -16,6 +16,11 @@
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'competency_id'); ?>
+		<?php echo $form->textField($model,'competency_id'); ?>
+		<?php echo $form->error($model,'competency_id'); ?>
+	</div>
+	<div class="row">
 		<?php echo $form->labelEx($model,'competency_candidates_id'); ?>
 		<?php echo $form->textField($model,'competency_candidates_id'); ?>
 		<?php echo $form->error($model,'competency_candidates_id'); ?>
@@ -27,11 +32,7 @@
 		<?php echo $form->error($model,'user_id'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'competency_id'); ?>
-		<?php echo $form->textField($model,'competency_id'); ?>
-		<?php echo $form->error($model,'competency_id'); ?>
-	</div>
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'competency_grade'); ?>
 		<?php echo $form->textField($model,'competency_grade'); ?>
@@ -42,6 +43,12 @@
 		<?php echo $form->textField($model,'years_of_experience'); ?>
 		<?php echo $form->error($model,'years_of_experience'); ?>
 	</div>
+	<div class="row">
+		<?php //echo $form->labelEx($model,'competencycandidates.competency area'); ?>
+		<?php //echo $form->textField($model, 'competencycandidates.competency_area'); ?>
+		<?php //echo $form->error($model.competencycandidates.competency_area, 'competency_area'); ?>
+	</div>
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

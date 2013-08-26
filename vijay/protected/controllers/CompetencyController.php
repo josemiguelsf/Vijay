@@ -36,7 +36,7 @@ class CompetencyController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view','treeview', simpletree),
+				'actions'=>array('index','view','treeview', 'simpletree'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -170,6 +170,7 @@ class CompetencyController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		
 		$model=new Competency('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Competency']))
@@ -233,4 +234,5 @@ class CompetencyController extends Controller
 		);
 		$this->render('index', array('dataTree'=>$dataTree));
 	}
+	
 }

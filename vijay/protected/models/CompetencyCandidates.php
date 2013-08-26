@@ -51,7 +51,7 @@ class CompetencyCandidates extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-				'Competency_candidates'=>array(self::HAS_ONE, 'Competency', 'competency_id')
+				'competency_candidates'=>array(self::HAS_ONE, 'Competency', 'competency_id')
 				
 				
 		);
@@ -86,6 +86,30 @@ class CompetencyCandidates extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
-	
+	public function searchcomp()
+	{
+		$criteria = new CDbCriteria;
+		$criteria->select = 'firstfield';
+		$criteria->with = array('secondTable_relation'=>array('select'=>'secondfield'));
+		$dataProvider = new CActiveDataProvider('firstTable', 
+                    array('criteria' => $criteria,
+                    'pagination' => array(
+                        'pageSize' => 10,
+                    ),
+                ));
+		$results=$dataProvider->getData();
+	}
+	public function searchcomp2()
+	{	
+		$criteria=new CDbCriteria;
+		$criteria->compare(array(
+				'with'=>array('Competencycandidates'=>array('joinType'=>'INNER JOIN')),
+				'order'=>'competency_id DESC',
+		));
+		 return new CActiveDataProvider('Competency',array(
+            'criteria'=>$criteria,
+            
+        ));
+		
+	}
 }

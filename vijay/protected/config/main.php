@@ -14,7 +14,6 @@
 
 // Load db config file
 $db = include_once('db.php');
- 
 $main = array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'VijayHR',
@@ -70,6 +69,9 @@ $main = array(
                 ),
             ),
         ),
+		'bootstrap'=>array(
+				'class'=>'bootstrap.components.Bootstrap',
+		),
 	$db = array(
 	'components' => array(
 		'db' =>  array(
@@ -106,6 +108,7 @@ $main = array(
             'enableCookieValidation' => true,
             'enableCsrfValidation' => true,
         ),
+		'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
 		'modules'=>array(
 	      //  'install',
 		//'update',
