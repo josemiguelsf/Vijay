@@ -10,6 +10,10 @@ class Users extends CActiveRecord
 	{
 		return $this->user_name." ".$this->user_lastname;
 	}
+	public function getAccountId()
+	{
+		return $this->account_id;
+	}
 	public function getImagepath()
 	{
 		return $this->user_imagepath;

@@ -23,7 +23,7 @@ $this->pageTitle = Yii::app()->name." - ".Yii::t('users', 'TitleUsers');
 			<?php if((Yii::app()->user->IsAdministrator) || ($model->user_id == Yii::app()->user->id)):?>
 				<?php echo CHtml::link(Yii::t('users', 'Update User Profile'), Yii::app()->controller->createUrl('update',array('id'=>$model->user_id)), array('class'=>'button')); ?>
 			<?php endif;?>
-			<?php echo CHtml::link(Yii::t('users', 'Update My Competency'), Yii::app()->createUrl('competencycandidates/admin',array('id'=>$model->user_id))); ?>
+			<?php echo CHtml::link(Yii::t('users', 'Update My Competency'), Yii::app()->createUrl('CompetencyCandidates/list',array('id'=>$model->user_id))); ?>
 							
 		</div>
 		<div class="subcolumns">
@@ -104,7 +104,58 @@ $this->pageTitle = Yii::app()->name." - ".Yii::t('users', 'TitleUsers');
 			</div>
 		</div>
 		<br />
-		<?php if (Yii::app()->user->id == $model->user_id) : ?>
+		
+		
+		
+		
+		
+		
+		
+		
+		<?php 
+		
+		if ($model->AccountId==77){
+
+		$this->widget('zii.widgets.grid.CGridView', array(
+		'id'=>'competency-grid',
+		'dataProvider'=>$CompetenciesCandidate,
+		'columns'=>array(
+				'competency_id',
+				'user_id',
+				'competency_grade',
+				'years_of_experience',
+				//'competency_candidates.competency_area',
+					'competency_candidates.competency_area',
+				array(
+						'class'=>'CButtonColumn',
+				),
+		),
+));
+/*
+
+
+		 $this->widget('zii.widgets.grid.CGridView', array(
+		'id'=>'competency-grid',
+		'dataProvider'=>$CompetenciesCandidate,
+		'columns'=>array(
+				'competency_id',
+				'user_id',
+				'competency_grade',
+				'years_of_experience',
+					
+				array(
+						'class'=>'CButtonColumn',
+				),
+		),
+));
+*/
+		}
+
+	
+			
+		
+		
+		if (Yii::app()->user->id == $model->user_id) : ?>
 		<div class="portlet x12">
 			<div class="portlet-content">
 				<h1 class="ptitle users"><?php echo Yii::t('users', 'ProjectList'); ?></h1>

@@ -13,6 +13,7 @@
 <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/buttons.css" rel="stylesheet" type="text/css" />
 <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/grid.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" type="image/x-icon" href="<?php echo Yii::app()->request->baseUrl; ?>/favicon.png" />
+
 </head>
 <body>
 	<div id="wrapper" class="clearfix">

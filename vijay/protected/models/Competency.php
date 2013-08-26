@@ -46,9 +46,10 @@ class Competency extends CActiveRecord
 	 */
 	public function relations()
 	{
-		return array('competency' => array(self::HAS_MANY, 'Competency_candidates', 'competency_candidates_id'), 
-		'competency_parent' => array(self::BELONGS_TO, 'Competency', 'competency_id'),
-		'competency_children' => array(self::HAS_MANY, 'Competency', 'competency_area', 'order' => 'competency_id ASC'),
+		return array(
+		'competency' => array(self::HAS_ONE, 'CompetencyCandidates', 'competency_id'), 
+		//'competency_parent' => array(self::BELONGS_TO, 'Competency', 'competency_id'),
+		//'competency_children' => array(self::HAS_MANY, 'Competency', 'competency_area', 'order' => 'competency_id ASC'),
 		);
 	}
 	
@@ -80,6 +81,8 @@ class Competency extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
-	
+	public function getCompetencyArea() {
+		return $this->competency_area;
+	}
 	
 }

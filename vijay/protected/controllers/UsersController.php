@@ -112,6 +112,37 @@ class UsersController extends Controller
 			
 			if (Yii::app()->user->id == $model->user_id)
 			{
+				/* $CompCanDataProvider = new CActiveDataProvider('CompetencyCandidates',array(
+						
+						'criteria'=>array(
+								'condition'=>'user_id = :user_id',
+								//'join' => 'join competency_candidates on competency_candidates.competency_id=t.competency_id',
+								'with' => array('competency_candidates'),
+								'select'=>array('competency_id','competency_area'),
+								
+								'params'=>array(
+										':user_id'=>$model->user_id
+								),
+								'together'=>true,
+								
+						),
+						'pagination'=>array(
+								'pageSize'=>15,
+						),
+				)
+				);
+				//$CompCanDataProvider=$CompCanDataProvider1->getData();
+				*/
+				 $CompCanDataProvider = new CActiveDataProvider('CompetencyCandidates',array(
+						'criteria'=>array(
+								'condition'=>'user_id = :user_id',
+								'params'=>array(
+										':user_id'=>$model->user_id
+								),
+								'together'=>true,
+				
+						),
+				));
 				$projectDataProdiver = new CActiveDataProvider('Projects',array(
 					'criteria'=>array(
 						'condition'=>'Cusers.user_id = :user_id',
@@ -155,6 +186,8 @@ class UsersController extends Controller
 				'model'=>$model,
 				'Projects'=>(Yii::app()->user->id == $model->user_id) ? $projectDataProdiver : null,
 				'Companies'=>(Yii::app()->user->id == $model->user_id) ? $CompaniesDataProdiver : null,
+				'CompetenciesCandidate'=>(Yii::app()->user->id == $model->user_id) ? $CompCanDataProvider : null,
+					
 				'Tasks'=>$TasksDataProdiver,
 			));
 		}
