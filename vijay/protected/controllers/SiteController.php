@@ -58,6 +58,7 @@ class SiteController extends Controller
 	{
 		return array(
 			array('allow',
+					'actions'=>array('login'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user
@@ -160,7 +161,7 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->layout = "mainlogin";
+		$this->layout = "mainpage";
 		$this->render('index');
 	}
 	
@@ -205,7 +206,7 @@ class SiteController extends Controller
 	/**
 	 * Displays the login page
 	 */
-	public function actionLogin()
+	public function actionlogin()
 	{
 		
 		// redirec to dashboard page is user is registered
@@ -230,22 +231,17 @@ class SiteController extends Controller
 			// collect user input data
 			if(isset($_POST['LoginForm']))
 			{
+				
 				$model->attributes=$_POST['LoginForm'];
-				// validate user input and redirect to the previous page if valid
-				//echo "login no guest login";
-				//var_dump($model);
-				//echo $model->username;
-				//echo $model->password;
-				//die();
 				if($model->validate() && $model->login())
 				{
 					//echo "it is validated";
 					$this->redirect((Yii::app()->user->getState('refer')==null) ? Yii::app()->controller->createUrl('site/logged') : Yii::app()->user->getState('refer'));
 				}
 			}
-			$this->layout = "login";
+			//$this->layout = "login";
 			// display the login form
-			$this->render('login',array('model'=>$model));
+			$this->renderPartial('login',array('model'=>$model));
 		}
 	}
 	public function actionLogged()
@@ -325,18 +321,7 @@ class SiteController extends Controller
 	 */
 	public function actionRegister()
 	{
-		echo "josesito";
-		
-		// TRUE if multiples accounts can be created
-	/*	if (!Yii::app()->params['multiplesAccounts'])
-		{
-			if (AppTools::masterAdmin())
-			{
-				Yii::app()->user->loginRequired();
-				Yii::app()->end();
-			}
-		}*/
-		
+				
 		$register = new RegisterForm();
 		// RegisterForm was sent via POST
 		if(isset($_POST['RegisterForm']))
@@ -398,12 +383,14 @@ class SiteController extends Controller
 	// Recover password view
 	public function actionRecover()
 	{
+		
 		// create ForgottenPasswordForm object
 		$model = new ForgottenPasswordForm;
 
 		// verify if ForgottenPasswordForm was used
 		if(isset($_POST['ForgottenPasswordForm']))
 		{
+			
 			$model->attributes=$_POST['ForgottenPasswordForm'];
 			// validate model
 			if($model->validate())
@@ -458,13 +445,17 @@ class SiteController extends Controller
 						$this->refresh();
 					}
 					else
-						throw new CException('Error #000001');
+						Yii::app()->user->setFlash('EmailDoesNotExist', Yii::t('site','Email Does Not Exist'));
+						$this->refresh();
 				}
 				else
-					throw new CException(Yii::t('site','EmailNotExist'));
+					Yii::app()->user->setFlash('EmailDoesNotExist', Yii::t('site','Email Does Not Exist'));
+						$this->refresh();
 			}
 		}
+		
 		$this->layout = 'login';
+		
 		$this->render('recover',array('model'=>$model));
 	}
 	public function actionNewapplicant()
@@ -478,43 +469,14 @@ class SiteController extends Controller
 			$modelform->attributes=$_POST['ForgottenPasswordForm'];
 			$model=new Users;
 			$modelauth=new Authassignments;
-			//$criteria = new CDbCriteria();
-			//$criteria->user_email=$_POST['ForgottenPasswordForm']['user_email'];
-			//echo "miguelsdfdfdin";
-			//$testquery = Users::model()->find(array('condition'=>'user_email'='jose'));
-			//$post=Users::model()->findAll('condition'=>'user_email'='superservdo@gmail.com');
 			$uniqueemail=$model->find('user_email=:user_email', array('user_email'=>$_POST['ForgottenPasswordForm']['user_email']));
-			//echo "this is the email in db".$uniqueemail->user_email."that was it";
-			//echo $uniqueemail->user_phone;
-			//echo "miguelin";
-			
+						
 			// validate model
 			if($uniqueemail->user_email==null)
 			{
-				//echo "the email is null";
-			
-				// criteria object used to find all user data information
-				 /*$userCriteria = new CDbCriteria;
-				$userCriteria->condition = "user_email = :user_email";
-				$userCriteria->params = array(
-						':user_email' => $model->user_email,
-				);
-	
-				$CountUser = Users::model()->count($userCriteria);
-	
-				$transaction = Yii::app()->db->beginTransaction();
-				if ($CountUser > 0)
-				{*/
-				//echo "miguelito";
-				//echo $_POST['ForgottenPasswordForm']['user_email'];
-				//die();
+				
 				$model->user_email = $_POST['ForgottenPasswordForm']['user_email'];
 					
-					//echo $user->
-					//
-					//die();
-					//$user = Users::model()->find($userCriteria);
-						
 					// -- Password Generator
 					$vowels = 'aeiou';
 					$consonants = 'bcdfghjklmnpqrstvwxyz';
@@ -537,10 +499,6 @@ class SiteController extends Controller
 					$modelauth->userid=$model->user_id;
 					$modelauth->itemname="applicant";
 						
-					//echo md5($password);
-					//$model->user_phone = "8888888";
-					//echo $model->user_phone;
-					//$succ=$model->save(false);
 					if($model->save(false))
 					{
 						$modelauth->userid=$model->user_id;
@@ -549,13 +507,10 @@ class SiteController extends Controller
 								//'userRequest' => $model->CompleteName,
 								'user_email' => $model->user_email,
 								'user_password' => $password,
-							//	'applicationName' => Yii::app()->name,
-							//	'applicationUrl' => "http://".$_SERVER['SERVER_NAME'].Yii::app()->request->baseUrl,
-						),true);
+								),true);
 						
 						$subject = Yii::t('email','NewApplicant');
-	//echo "fernandez";
-						
+					
 						Yii::import('application.extensions.phpMailer.yiiPhpMailer');
 						$mailer = new yiiPhpMailer;
 						$mailer->Ready($subject, $str, array('name'=>$model->CompleteName,'email'=>$model->user_email), Emails::PRIORITY_NORMAL);
@@ -563,8 +518,7 @@ class SiteController extends Controller
 						echo $model->user_email.'<br>';
 						echo $model->user_password.'<br>';
 						echo $password.'<br>';
-						
-						die();
+												
 						Yii::app()->user->setFlash('PasswordSuccessChanged', Yii::t('site','NewApplicantSuccess'));
 						$this->refresh();
 						
@@ -577,7 +531,7 @@ class SiteController extends Controller
 			}
 		
 		$this->layout = 'login';
-		$this->render('newapplicant',array('model'=>$modelform));
+		$this->renderPartial('newapplicant',array('model'=>$modelform));
 	}
 
 	// hel view

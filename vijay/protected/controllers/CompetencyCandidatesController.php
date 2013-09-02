@@ -93,12 +93,7 @@ class CompetencyCandidatesController extends Controller
 				if($modelcan->save())
 				$this->redirect(array('list','id'=>$modelcan->competency_candidates_id));
 		}
-		//echo "before modelcantotal";
-//$modelcantotal=CompetencyCandidates::model()->findAll();
-//$modelcomptotal=$modelcomp->findAll();
-//echo "after modelcantotal";
-//print_r($modelcantotal);
-//die();
+		
 		$this->render('create',array(
 			'modelcan'=>$modelcan,'modelcomp'=>$modelcomp,
 		));
@@ -116,9 +111,6 @@ class CompetencyCandidatesController extends Controller
 		if ($compgrade=="") { $this->redirect(array('create'));}
 		else {
 		
-		//echo "first".$id."second".$id2;
-		//die();
-		//if ($id<>NULL){	
 		$model=$this->loadModel($id);
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -236,36 +228,6 @@ class CompetencyCandidatesController extends Controller
 			Yii::app()->end();
 		}
 	}
-	/*public function actionDynamictechnics()
-	{
-		if(Yii::app()->request->isAjaxRequest)
-		{
-			//echo $_POST['competency']['competency_area'];
-			//.$_POST[":parent_id"].$_POST["competency_area"].$areas.$list.$_POST['CompetencyArea'];
-			//echo $_POST['competency_id'].'data'.$_POST["area"].$_POST["competency_area"].$areas.$list.$_POST['CompetencyArea'];
-				
-		//echo $modelcomp->attributes->competency_area;
-		//echo $_POST['Competency']['competency_area'];
-		
-		$data=Competency::model()->findAll('competency_id=:competency_id', 
-                  array(':competency_id'=>(int) $_POST['competency_id']));
-// "condition"=>'competency_area'==$_POST['Competency']['competency_area']));
-		//'competency_id=:competency_id',
-				//array(':competency_id'=>(int) $_POST['competency_area']));
-		
-		//var_dump($POST['competency_area']);
-		//die();
-	
-		$data=CHtml::listData($data,'competency_id','competency_technic');
-		foreach($data as $value=>$competency_technic)
-		{
-			echo CHtml::tag('option',
-					array('value'=>$value),CHtml::encode($competency_technic),true);
-		} 
-	}
-	}
-	
-		*/	
 	
 	public function actionDisCoor() {
 		$model = School::model()->findByPk($_POST['Students']['student_id']);
@@ -278,48 +240,8 @@ class CompetencyCandidatesController extends Controller
 	
 	
 	
-	public function actionLoadcities()
-	{
+	
 		
-		//echo "this is load cities";
-		
-		$data=Competency::model()->findAll('competency_id=:competency_id',
-				array(':competency_id'=>(int) $_POST['region_id']));
-	
-		$data=CHtml::listData($data,'competency_id','competency_area');
-	
-		echo "<option value=''>Select City</option>";
-		foreach($data as $value=>$competency_area)
-		{
-			echo CHtml::tag('option', array('value'=>$value),CHtml::encode($competency_area),true);
-		}
-	}
-	public function actionDynamictechnics()
-	{
-		//if(Yii::app()->request->isAjaxRequest)
-	//	{
-			$data=Competency::model()->findAll('competency_area=:competency_area',
-					array(':competency_area'=>(int) $_POST['region_id']));
-			
-			$data=CHtml::listData($data,'competency_id','competency_area');
-			foreach($data as $value=>$competency_area)
-			{
-				echo CHtml::tag('option',array('value'=>$value),CHtml::encode($competency_area),true);
-			}
-		//}
-	}
-	public function actionDynamiccities()
-	{
-		$data=Location::model()->findAll('parent_id=:parent_id',
-				array(':parent_id'=>(int) $_POST['country_id']));
-	
-		$data=CHtml::listData($data,'id','name');
-		foreach($data as $value=>$name)
-		{
-			echo CHtml::tag('option',
-					array('value'=>$value),CHtml::encode($name),true);
-		}
-	}
 	public function actionCompdata()
 	{
 	

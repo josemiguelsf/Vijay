@@ -132,6 +132,8 @@ $main = array(
 				'index'=>array('site/index'),
 				'contact'=>array('site/contact'),
 				'login'=>array('site/login'),
+					
+					
 						
 			)
         ),

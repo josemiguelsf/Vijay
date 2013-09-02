@@ -1,59 +1,23 @@
+
 <?php $this->beginContent('application.views.layouts.main'); ?>
 
 <div class="container rounded">
-	<div class="grid_8">
+	<div class="row">
+	<div class="span8">
+		<!-- At this moment the content variable refers to the output view -->
 		<?php echo $content; ?>
 	</div>
-	<div class="grid_4">
-	THIS IS COMING FROM THE COLUMN2.PHP JMS JS
+	<div class="span4">
 	
+	<h3>Add My Competency</h3>
+	<?php 
+	//this doesn't work it looks like the modelcan and modelcomp are not being loaded
+	$modelcan=new CompetencyCandidates;
+	$modelcomp=new Competency;
 	
-		<?php
-		echo "COLUM2 COLUM2 COLUM2";
-			// Milestones Access
-			if(Yii::app()->user->checkAccess('dashboardMilestones'))
-			{
-				$this->widget('widgets.UpcomingEvents', array(
-					'htmlOptions' => array(
-						'class'=>'portlet'
-					)
-				));
-			}
-			
-			// Milestones Access
-			if(Yii::app()->user->checkAccess('dashboardMilestones'))
-			{
-				$this->widget('widgets.OverdueMilestones', array(
-					'htmlOptions' => array(
-						'class'=>'portlet'
-					)
-				));
-			}
-			// Commens ticker
-			$this->widget('widgets.CommentsFeed', array(
-				'htmlOptions' => array(
-					'class'=>'portlet'
-				),
-				'limit'=>10
-			));
-			
-			// Tasks Access
-			if(Yii::app()->user->checkAccess('dashboardTasks'))
-			{
-				$this->widget('widgets.LateTask', array(
-					'htmlOptions' => array(
-						'class'=>'portlet'
-					)
-				));
-				
-				$this->widget('widgets.ListLogs',array(
-					'userExtended'=>false,
-					'htmlOptions' => array(
-						'class'=>'portlet',
-					)
-				));
-			}
-		?>
+	echo $this->renderPartial('_formcreate', array('modelcan'=>$modelcan,'modelcomp'=>$modelcomp)); ?>
+	
+	</div>
 	</div>
 	<div class="clear">&nbsp;</div>
 	<?php $this->endContent(); ?>

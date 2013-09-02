@@ -1,11 +1,9 @@
 <?php
+Yii::import('ext.cascadedropdown.ECascadeDropDown');
 /**
  * UsersController class file
  * 
- * @author		Jackfiallos
- * @link		http://qbit.com.mx/labs/celestic
- * @copyright 	Copyright (c) 2009-2011 Qbit Mexhico
- * @license 	http://qbit.com.mx/labs/celestic/license/
+ * @author		Jose Sanchez
  * @description
  * Controller handler for tasks
  * @property string $layout
@@ -56,7 +54,8 @@ class UsersController extends Controller
 					'update',
 					'delete',
 					'index',
-					'admin'
+					'admin',
+					'createcomp'
 				),
 				'users'=>array('@'),
 				'expression'=>'!$user->isGuest',
@@ -102,6 +101,7 @@ class UsersController extends Controller
 	 */
 	public function actionView()
 	{
+		$this->layout='column2';
 		if(Yii::app()->user->checkAccess('viewUsers'))
 		{
 			$model = $this->loadModel();
@@ -112,27 +112,6 @@ class UsersController extends Controller
 			
 			if (Yii::app()->user->id == $model->user_id)
 			{
-				/* $CompCanDataProvider = new CActiveDataProvider('CompetencyCandidates',array(
-						
-						'criteria'=>array(
-								'condition'=>'user_id = :user_id',
-								//'join' => 'join competency_candidates on competency_candidates.competency_id=t.competency_id',
-								'with' => array('competency_candidates'),
-								'select'=>array('competency_id','competency_area'),
-								
-								'params'=>array(
-										':user_id'=>$model->user_id
-								),
-								'together'=>true,
-								
-						),
-						'pagination'=>array(
-								'pageSize'=>15,
-						),
-				)
-				);
-				//$CompCanDataProvider=$CompCanDataProvider1->getData();
-				*/
 				 $CompCanDataProvider = new CActiveDataProvider('CompetencyCandidates',array(
 						'criteria'=>array(
 								'condition'=>'user_id = :user_id',
@@ -181,13 +160,36 @@ class UsersController extends Controller
 					'with'=>array('Users'),
 				),
 			));
+			//
+			{
+				
+				if (!isset($modelcan)){$modelcan=new CompetencyCandidates;}
+				if (!isset($modelcomp)){$modelcomp=new Competency;}
+				$modelcan->user_id=Yii::app()->user->id;
+								
+				if(isset($_POST['CompetencyCandidates'])& isset($_POST['Competency']))
+				{
+					//if ($modelcomp->user_id==0) $modelcomp->user_id=Yii::app()->user->id;
+					$modelcan->attributes=$_POST['CompetencyCandidates'];
+					$modelcomp->attributes=$_POST['Competency'];
+					
+					//for unknown reasons the $modelcomp->competency_technic is providing the competenc_id
+					$modelcan->competency_id=intval($modelcomp->competency_technic);
+										
+					if($modelcan->save()){};
+					//if($modelcan->save());
+						
+				}
 			
+				}
+						
 			$this->render('view',array(
 				'model'=>$model,
 				'Projects'=>(Yii::app()->user->id == $model->user_id) ? $projectDataProdiver : null,
 				'Companies'=>(Yii::app()->user->id == $model->user_id) ? $CompaniesDataProdiver : null,
 				'CompetenciesCandidate'=>(Yii::app()->user->id == $model->user_id) ? $CompCanDataProvider : null,
-					
+				'modelcan'=>$modelcan,
+				'modelcomp'=>$modelcomp,
 				'Tasks'=>$TasksDataProdiver,
 			));
 		}
@@ -274,6 +276,7 @@ class UsersController extends Controller
 	 */
 	public function actionUpdate()
 	{
+		$this->layout='column1';
 		
 		if(Yii::app()->user->checkAccess('updateUsers'))
 		{
@@ -308,17 +311,8 @@ class UsersController extends Controller
 					$model->user_password = md5($model->user_password);
 				//echo "this is before validation";
 				$valid = $address->validate();
-				//$valid = $model->validate() && $valid;
-				///echo "this is before validating posting";
-				//var_dump($valid);
-				//die();
 				if($valid)
 				{
-					//echo "this is after validating";
-				//	die();
-					//its validating the field as being blank check this out...
-					//echo "joseKccvcvcxcvcccK";
-				//	die();
 					$address->save(false);
 					$model->address_id = $address->primaryKey;
 					
@@ -335,33 +329,15 @@ class UsersController extends Controller
 						);
 						
 						Logs::model()->saveLog($attributes);
-					//	echo "this form is posted";
 						$filename="jmsimageupload.jpg";
-						//echo $model->user_email;
-						//die();
 						$model->image=CUploadedFile::getInstance($model,'image');
-						//var_dump($model->image);
-						//die();
-						//$uploadedFile=CUploadedFile::getInstance($model,'user_imagepath');
-						//var_dump($uploadedFile);
-						//die();
-						//$model->user_imagepath = $fileName;
-						//echo "this is the type".($model->image->getType());
-						//echo "this is before saving";
-						//die();
 						$model->image->saveAs('/imagenjose.jpg');
-						//$uploadedFile->saveAs('/images/'.$fileName);
-						//echo "THIS IS AFTER SAVING";
-					//	die();
-						
+											
 						$this->redirect(array('view','id'=>$model->user_id));
 					}
 				}
 			}
-//$countryupd=new Country;
-//$countryupdate = Country::model()->findByPk('4');
-//echo $countryupdate->country_name."miguelsanchez";
-//die();
+
 			$this->render('update',array(
 				'model'=>$model,
 				'allowEdit'=>$allowEdit,
@@ -501,5 +477,28 @@ class UsersController extends Controller
 			throw new CHttpException(403, Yii::t('site', '403_Error'));
 		else
 			return $response;
+	}
+	public function actionCreatecomp()
+	{
+		echo "miguelito";
+		die();
+		$modelcan=new CompetencyCandidates;
+		$modelcomp=new Competency;
+		// Uncomment the following line if AJAX validation is needed
+		$this->performAjaxValidation($model);
+	
+		if(isset($_POST['CompetencyCandidates'])& isset($_POST['Competency']))
+			//if(isset($_POST['CompetencyCandidates']))
+		{
+			$modelcan->attributes=$_POST['CompetencyCandidates'];
+			//$modelcomp->attributes=$_POST['Competency'];
+			//if($modelcan->save() & $modelcomp->save())
+			if($modelcan->save())
+				$this->redirect(array('list','id'=>$modelcan->competency_candidates_id));
+		}
+			
+		$this->renderPartial('_formcreate',array(
+				'modelcan'=>$modelcan,'modelcomp'=>$modelcomp,
+		));
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 $this->breadcrumbs=array(
-	Yii::t('configuration', 'TitleConfiguration')=>array('configuration/admin'),
-	Yii::t('users', 'TitleUsers')=>array('index'),
+	//Yii::t('configuration', 'TitleConfiguration')=>array('configuration/admin'),
+	//Yii::t('users', 'TitleUsers')=>array('index'),
 	$model->CompleteName,
 );
 $this->pageTitle = Yii::app()->name." - ".Yii::t('users', 'TitleUsers');
@@ -9,10 +9,13 @@ $this->pageTitle = Yii::app()->name." - ".Yii::t('users', 'TitleUsers');
 
 <div class="portlet x9">
 	<div class="portlet-content">
-		<h1 class="ptitleinfo users"><?php echo $model->CompleteName; ?></h1>
+		<h1 class="ptitleinfo users"><?php //echo $model->CompleteName; ?></h1>
 		<div class="button-group portlet-tab-nav">
 			<?php if ($model->user_id == Yii::app()->user->id) : ?>
-				<?php echo CHtml::link(Yii::t('users', 'ManageNotifications'), Yii::app()->controller->createUrl('notifications'), array('class'=>'button')); ?>
+							
+				<a class="btn btn-small" href=" <?php echo Yii::app()->controller->createUrl('index')?>"><i class="icon-star"></i><?php echo Yii::t('users', 'ManageNotifications')?></a>
+			
+			
 			<?php endif; ?>
 			<?php if((Yii::app()->user->IsAdministrator)):?>
 			<?php echo CHtml::link(Yii::t('users', 'ListUsers'), Yii::app()->controller->createUrl('index'), array('class'=>'button')); ?>
@@ -21,10 +24,9 @@ $this->pageTitle = Yii::app()->name." - ".Yii::t('users', 'TitleUsers');
 				<?php echo CHtml::link(Yii::t('users', 'CreateUser'), Yii::app()->controller->createUrl('create'), array('class'=>'button')); ?>
 			<?php endif;?>
 			<?php if((Yii::app()->user->IsAdministrator) || ($model->user_id == Yii::app()->user->id)):?>
-				<?php echo CHtml::link(Yii::t('users', 'Update User Profile'), Yii::app()->controller->createUrl('update',array('id'=>$model->user_id)), array('class'=>'button')); ?>
+				<a class="btn btn-small" href=" <?php echo Yii::app()->controller->createUrl('users/update',array('id'=>$model->user_id))?>"><i class="icon-star"></i><?php echo Yii::t('users', 'Update User Profile')?></a>
 			<?php endif;?>
-			<?php echo CHtml::link(Yii::t('users', 'Update My Competency'), Yii::app()->createUrl('CompetencyCandidates/list',array('id'=>$model->user_id))); ?>
-							
+								
 		</div>
 		<div class="subcolumns">
 			<div class="c80l">
@@ -131,25 +133,7 @@ $this->pageTitle = Yii::app()->name." - ".Yii::t('users', 'TitleUsers');
 				),
 		),
 ));
-/*
-
-
-		 $this->widget('zii.widgets.grid.CGridView', array(
-		'id'=>'competency-grid',
-		'dataProvider'=>$CompetenciesCandidate,
-		'columns'=>array(
-				'competency_id',
-				'user_id',
-				'competency_grade',
-				'years_of_experience',
-					
-				array(
-						'class'=>'CButtonColumn',
-				),
-		),
-));
-*/
-		}
+}
 
 	
 			
@@ -191,64 +175,8 @@ $this->pageTitle = Yii::app()->name." - ".Yii::t('users', 'TitleUsers');
 				),
 			)); ?>
 		</div>
-		<br />
-		<div class="portlet x12">
-			<div class="portlet-content">
-				<h1 class="ptitle companies"><?php echo Yii::t('users', 'CompanyList'); ?></h1>
-			</div>
-			<?php $this->widget('zii.widgets.grid.CGridView', array(
-				'id'=>'companies-grid',
-				'cssFile'=>Yii::app()->request->baseUrl."/css/screen.css",
-				'dataProvider'=>$Companies,
-				'summaryText'=>Yii::t('site','summaryText'),
-				'emptyText'=>Yii::t('site','emptyText'),
-				'columns'=>array(
-					array(
-						'name'=>'company_name',
-						'type'=>'raw',
-						'value' =>'CHtml::link($data->company_name,Yii::app()->controller->createUrl("companies/view",array("id"=>$data->company_id)))',
-					),
-					array(
-						'name'=>'company_url',
-						'type'=>'raw',
-						'value' =>'CHtml::link(CHtml::encode($data->company_url),$data->company_url)',
-					),
-					'company_uniqueId',
-				),
-			));
-			?>
-		</div>
-		<br />
+		
 		<?php endif; ?>
-		<div class="portlet x12">
-			<div class="portlet-content">
-				<h1 class="ptitle tasks"><?php echo Yii::t('users', 'TasksToResolve'); ?></h1>
-			</div>
-			<?php $this->widget('zii.widgets.grid.CGridView', array(
-				'id'=>'tasks-grid',
-				'cssFile'=>Yii::app()->request->baseUrl."/css/screen.css",
-				'dataProvider'=>$Tasks,
-				'summaryText'=>Yii::t('site','summaryText'),
-				'emptyText'=>Yii::t('site','emptyText'),
-				'columns'=>array(
-					array(
-						'name'=>'task_name',
-						'type'=>'raw',
-						'value'=>'CHtml::link(CHtml::encode($data->task_name),Yii::app()->createUrl("tasks/view", array("id"=>$data->task_id)))',
-					),
-					array(
-						'name'=>'status_id',
-						'type'=>'raw',
-						'value'=>'CHtml::tag("span",array("class"=>"text status st".$data->Status->status_id),$data->Status->status_name)',
-					),
-					array(
-						'name'=>'taskTypes_id',
-						'type'=>'raw',
-						'value'=>'CHtml::tag("span",array("class"=>"text tasktypes tty".$data->taskTypes_id),$data->Types->taskTypes_name)',
-					),
-				),
-			));
-			?>
-		</div>
+		
 	</div>
 </div>
