@@ -51,7 +51,7 @@ class CompetencyCandidates extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-				'competency_candidates'=>array(self::HAS_ONE, 'Competency', 'competency_id')
+				'competency_candidates'=>array(self::BELONGS_TO, 'Competency', 'competency_id')
 				
 				
 		);

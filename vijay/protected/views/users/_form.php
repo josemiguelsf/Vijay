@@ -6,7 +6,8 @@
 )); ?>
 
 	<?php echo Yii::t('users','FieldsRequired'); ?>
-	
+	<?php echo CHtml::button($model->isNewRecord ? Yii::t('site','create') : Yii::t('site','Save Update'), array('type'=>'submit', 'class'=>'btn btn-large','tabindex'=>13,'disabled'=>!$allowEdit)); ?>
+			
 	<?php
 	if (!$model->isNewRecord && !$allowEdit)
 		echo CHtml::tag("div", array('class'=>'notification_warning'),Yii::t('users', 'NowAllowedToEdit'));
@@ -215,7 +216,7 @@
 
 	<div class="row buttons subcolumns">
 		<div class="c50l">
-			<?php echo CHtml::button($model->isNewRecord ? Yii::t('site','create') : Yii::t('site','save'), array('type'=>'submit', 'class'=>'button big primary','tabindex'=>13,'disabled'=>!$allowEdit)); ?>
+			<?php echo CHtml::button($model->isNewRecord ? Yii::t('site','create') : Yii::t('site','Save Update'), array('type'=>'submit', 'class'=>'btn btn-large','tabindex'=>13,'disabled'=>!$allowEdit)); ?>
 			<?php echo CHtml::button(Yii::t('site','reset'), array('type'=>'reset', 'class'=>'button big','tabindex'=>14,'disabled'=>!$allowEdit)); ?>
 		</div>
 		<div class="c50r" style="text-align:right;">

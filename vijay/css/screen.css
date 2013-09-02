@@ -210,7 +210,8 @@ tr.selected
 
 /* Layout */
 body{
-    background: #EFEFEF;
+    /*background: #EFEFEF;*/
+	 background: url(../images/yellow015.jpg) repeat;
     font: 13px/1.75em arial,sans-serif;
     min-height: 1063px;
 }

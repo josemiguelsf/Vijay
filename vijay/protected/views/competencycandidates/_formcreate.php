@@ -31,7 +31,7 @@
 			$areas = Competency::model()->findAll();
 			$list = CHtml::listData($areas, 'competency_area', 'competency_area'); // <-- this last parameter is the same as the new function name above (without the 'get' part)
 			//the empty parameter which is an option on the following echo does not work
-			echo $form->dropDownList($modelcomp, 'competency_area', $list, array('id'=>'id_comp'));
+			echo $form->dropDownList($modelcomp, 'competency_area', $list, array('id'=>'id_comp','prompt'=>'Select Competency'));
 
 		ECascadeDropDown::master('id_comp')->setDependent('id_tech',array('dependentLoadingLabel'=>'Loading Technics ...'),'competencycandidates/compdata');
 		?>
@@ -41,7 +41,7 @@
 		<?php 
 			$techs = Competency::model()->findAll();
 			$listtechs = CHtml::listData($techs, 'competency_technic', 'competency_technic'); // <-- this last parameter is the same as the new function name above (without the 'get' part)
-			echo $form->dropDownList($modelcomp, 'competency_technic', $listtechs, array('id'=>'id_tech'));	
+			echo $form->dropDownList($modelcomp, 'competency_technic', $listtechs, array('id'=>'id_tech','prompt'=>'Select Technic'));	
 		?>
 		<?php echo $form->error($modelcomp,'competency_technic'); ?>
 	</div>
