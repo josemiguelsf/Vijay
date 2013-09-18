@@ -10,6 +10,8 @@
     <!-- Le styles -->
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap-responsive.css" rel="stylesheet" type="text/css" />
+	
+	
 	<style>
 
     /* GLOBAL STYLES
@@ -257,7 +259,7 @@
       }
        .logicons {
          float:left;
-		margin-left:23%;  
+		margin-left:12%;  
 		margin-top:2%;     
       }
        #loginajax {
@@ -282,8 +284,6 @@
 
   <body>
 
-
-
     <!-- NAVBAR
     ================================================== -->
     
@@ -299,7 +299,8 @@
                 
                 <ul class="nav brand">
                  <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
+                <li><a href="#about">About Us</a></li> 
+                
                 <li><a href="#contact">Contact</a></li>
                 <!-- Read about Bootstrap dropdowns at http://twbs.github.com/bootstrap/javascript.html#dropdowns -->
                 <li class="dropdown">
@@ -339,7 +340,10 @@
 
     <!-- Carousel
     ================================================== -->
-    <div id="myCarousel" class="carousel slide">
+    <div class="container">
+    <div class="row">
+    <div class="span9">
+        <div id="myCarousel" class="carousel slide">
       <div class="carousel-inner">
         <div class="item active">
          
@@ -377,19 +381,37 @@
       <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
     </div><!-- /.carousel -->
+</div>
+<div class="span3">
 
 
+<?php 
+            $this->renderPartial('login',array('model'=>$model));
+            $this->renderPartial('recover',array('model'=>$modelrecov));
+            
+?>
 
+	<a href="#about" id="jmclickxx">Train Yourself</a>
+		
+	
+	</div>
+	
+
+
+ 
+</div>
+</div>
+     
     <!-- Marketing messaging and featurettes
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
 
     <div class="container marketing">
-<!-- one row for how it workds -->
+<!-- one row for how it works -->
     <div class="row">
         <div class="span12">
           <img class="img-circle" data-src="holder.js/140x140">
-          <h2>It's all about competency</h2>
+          <h2>It's all about Competency and Skills</h2>
           <h4>Register/Sign-In, tell us what you know and Companies will hire you for it</h4>
           <p><a class="btn" href="#">View details &raquo;</a></p>
         </div><!-- /.span12 -->
@@ -423,7 +445,7 @@
 
       <div class="featurette">
         <img class="featurette-image pull-right" src="../assets/img/examples/browser-icon-chrome.png">
-        <h2 class="featurette-heading">First featurette headling. <span class="muted">It'll blow your mind.</span></h2>
+        <h2 class="featurette-heading">Get to know these Companies <span class="muted"></span></h2>
         <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>
 
@@ -431,7 +453,7 @@
 
       <div class="featurette">
         <img class="featurette-image pull-left" src="../assets/img/examples/browser-icon-firefox.png">
-        <h2 class="featurette-heading">Oh yeah, it's that good. <span class="muted">See for yourself.</span></h2>
+        <h2 class="featurette-heading">Be Good, Be Better, Train Yourself at no Cost <span class="muted"></span></h2>
         <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>
 
@@ -481,7 +503,19 @@
           $('#myCarousel').carousel()
         })
       }(window.jQuery)
-      	$('#myModal').modal()
+      
+        </script>
+      <script>
+
+      $(document).ready(function(){
+    	  $("#jmclick").click(function(){
+    		    $("#jose").hide();
+    		  });
+    	  })
+
+
+    
+      	
     </script>
     <script src="js/holder/holder.js"></script>
   </body>

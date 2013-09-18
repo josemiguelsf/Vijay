@@ -126,7 +126,11 @@ div.form .errorMessage
 	color: red;
 	font-size: 0.9em;
 }
-
+.errorMessage
+{
+	color: red;
+	font-size: 1.2em;
+}
 div.form .errorSummary p
 {
 	margin: 0;

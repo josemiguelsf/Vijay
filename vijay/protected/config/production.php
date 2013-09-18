@@ -2,10 +2,8 @@
 /**
  * production configuration file
  * 
- * @author		Jackfiallos
- * @link		http://qbit.com.mx/labs/celestic
- * @copyright Copyright (c) 2009-2011 Qbit Mexhico
- * @license http://qbit.com.mx/labs/celestic/license/
+ * @author		Jose SAnchez
+ * @copyright Copyright (c) 2013, Schaumburg, IL
  * @description
  * This is the production Web application configuration
  *

@@ -10,7 +10,7 @@ return array(
 	'ForgottenPassword' => 'Forgotten you password?',
 	'NewApplicantRegistration' => 'New Applicant Registration',
 	'FieldsRequired' => '<p class="note stick">Fields with <span class="required">*</span> are required.</p>',
-	'restorePassword' => '<p>You can reset your password if you know the email address used for registration.</p><p>Fill the same and click on the button below. You will receive an email containing the link where you can enter your new password details.</p>',
+	'restorePassword' => '<p>Just enter your email ID.</p><p>click on the button below and you will receive an email with your new password.</p>',
 	'PasswordSuccessChanged' => 'We have a surprise for you, check your email account.',
 	'NewApplicantSuccess' => 'Please check your email for a valid password.',
 	'EmailAlreadyExists' => 'this email already exists. Try Forgotten Password Option.',

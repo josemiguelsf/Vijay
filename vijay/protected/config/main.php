@@ -2,10 +2,8 @@
 /**
  * main configuration file
  * 
- * @author		Jackfiallos
- * @link		http://qbit.com.mx/labs/celestic
- * @copyright Copyright (c) 2009-2011 Qbit Mexhico
- * @license http://qbit.com.mx/labs/celestic/license/
+ * @author		Jose Sanchez
+ * @copyright Copyright (c) 2013 Schaumbur, IL
  * @description
  * This is the main Web application configuration
  * CWebApplication properties can be configured here.
@@ -115,13 +113,13 @@ $main = array(
 	//	'modules'=>array(
 		// uncomment the following to enable the Gii tool
 		
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'admin',
+		//'gii'=>array(
+		//	'class'=>'system.gii.GiiModule',
+		//	'password'=>'admin',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			//'ipFilters'=>array('127.0.0.1','::1'),
 		//),
-		),
+		//),
 	),
 	
 		'urlManager'=>array(

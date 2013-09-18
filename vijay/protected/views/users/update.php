@@ -12,7 +12,7 @@ $this->pageTitle = Yii::app()->name." - ".Yii::t('users', 'TitleUsers');
 	<div class="portlet-content">
 		<h1 class="ptitleinfo users"><?php echo $model->CompleteName; ?></h1>
 		<div class="button-group portlet-tab-nav">
-			<a class="btn btn-large" href=" <?php echo Yii::app()->controller->createUrl('users/view',array('id'=>$model->user_id))?>"><i class="icon-star"></i><?php echo Yii::t('users', 'Back to User View')?></a>
+			<a class="btn btn-small" href=" <?php echo Yii::app()->controller->createUrl('users/view',array('id'=>$model->user_id))?>"><i class="icon-star"></i><?php echo Yii::t('users', 'Back to User View')?></a>
 				
 	
 		</div>

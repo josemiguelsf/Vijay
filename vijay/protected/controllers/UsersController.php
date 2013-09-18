@@ -276,7 +276,7 @@ class UsersController extends Controller
 	 */
 	public function actionUpdate()
 	{
-		$this->layout='column1';
+		$this->layout='column2update';
 		
 		if(Yii::app()->user->checkAccess('updateUsers'))
 		{

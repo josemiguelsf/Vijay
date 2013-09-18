@@ -2,10 +2,7 @@
 /**
  * SiteController class file
  * 
- * @author		Jackfiallos
- * @link		http://qbit.com.mx/labs/celestic
- * @copyright	Copyright (c) 2009-2011 Qbit Mexhico
- * @license		http://qbit.com.mx/labs/celestic/license/
+ * @author		Jose Sanchez
  * @description
  * Controller handler for site request
  * @property string $layout
@@ -59,6 +56,7 @@ class SiteController extends Controller
 		return array(
 			array('allow',
 					'actions'=>array('login'),
+					'actions'=>array('recover'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user
@@ -161,8 +159,37 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->layout = "mainpage";
-		$this->render('index');
+		// create LoginForm object
+		$model=new LoginForm;
+			
+		// if it is ajax validation request
+		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form')
+		{
+		
+			echo CActiveForm::validate($model);
+			Yii::app()->end();
+		}
+		
+		// collect user input data
+		if(isset($_POST['LoginForm']))
+		{
+		
+			$model->attributes=$_POST['LoginForm'];
+			if($model->validate() && $model->login())
+			{
+				//echo "it is validated";
+				$this->redirect((Yii::app()->user->getState('refer')==null) ? Yii::app()->controller->createUrl('site/logged') : Yii::app()->user->getState('refer'));
+			}
+		}
+		//$this->layout = "login";
+		// display the login form
+		//$this->renderPartial('login',array('model'=>$model));
+		//var_dump($model);
+		//die();
+		$this->layout = "index";
+		$modelrecov=$this->actionRecover();
+		
+		$this->render('mainpage',array('model'=>$model, 'modelrecov'=>$modelrecov));
 	}
 	
 	/**
@@ -390,11 +417,13 @@ class SiteController extends Controller
 		// verify if ForgottenPasswordForm was used
 		if(isset($_POST['ForgottenPasswordForm']))
 		{
-			
+			//echo "is POSTED";
+			//die();
 			$model->attributes=$_POST['ForgottenPasswordForm'];
 			// validate model
 			if($model->validate())
 			{				
+				
 				// criteria object used to find all user data information
 				$userCriteria = new CDbCriteria;
 				$userCriteria->condition = "user_email = :user_email";
@@ -403,7 +432,8 @@ class SiteController extends Controller
 				);
 				
 				$CountUser = Users::model()->count($userCriteria);
-				
+				//var_dump($CountUser);
+				//die();
 				$transaction = Yii::app()->db->beginTransaction();
 				if ($CountUser > 0)
 				{
@@ -444,19 +474,23 @@ class SiteController extends Controller
 						Yii::app()->user->setFlash('PasswordSuccessChanged', Yii::t('site','PasswordSuccessChanged'));
 						$this->refresh();
 					}
-					else
+					//else
+						//echo "user does not exist";
+					//die();
 						Yii::app()->user->setFlash('EmailDoesNotExist', Yii::t('site','Email Does Not Exist'));
 						$this->refresh();
 				}
-				else
+				
+				
 					Yii::app()->user->setFlash('EmailDoesNotExist', Yii::t('site','Email Does Not Exist'));
 						$this->refresh();
 			}
+			
 		}
 		
-		$this->layout = 'login';
-		
-		$this->render('recover',array('model'=>$model));
+		//$this->layout = 'login';
+		return $model;
+		// $this->renderpartial('recover',array('model'=>$model));
 	}
 	public function actionNewapplicant()
 	{
